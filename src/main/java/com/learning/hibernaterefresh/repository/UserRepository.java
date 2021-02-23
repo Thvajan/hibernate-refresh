@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -35,4 +36,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	@Query("from #{#entityName} u WHERE u.name =:name")
 	List<User> findByNameByParam(String name);
+	
+	@Query("UPDATE #{#entityName} u SET u.name = :prefix || u.name WHERE u.name =:name")
+	@Modifying
+	void addPrefixToName(String name, String prefix);
+	
 }
