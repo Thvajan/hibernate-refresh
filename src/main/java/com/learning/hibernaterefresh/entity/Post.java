@@ -7,9 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.PreUpdate;
-
-import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Post {
@@ -20,6 +19,9 @@ public class Post {
 	private String details;
 
 	private Timestamp postedOn;
+
+	@ManyToOne
+	private User user;
 
 	@PreUpdate
 	public void preUpdate() {
@@ -67,6 +69,19 @@ public class Post {
 
 	public void setPostedOn(Timestamp postedOn) {
 		this.postedOn = postedOn;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", details=" + details + ", postedOn=" + postedOn + "]";
 	}
 
 }

@@ -1,11 +1,14 @@
 package com.learning.hibernaterefresh.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -16,6 +19,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
+
+	@OneToMany(mappedBy = "user")
+//			,fetch = FetchType.EAGER)
+	private List<Post> posts;
 
 	@CreationTimestamp
 	private Timestamp dateOfBirth;
@@ -51,6 +58,19 @@ public class User {
 
 	public void setDateOfBirth(Timestamp dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", dateOfBirth=" + dateOfBirth + "]";
 	}
 
 }
