@@ -1,5 +1,8 @@
 package com.learning.hibernaterefresh;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -18,6 +21,20 @@ public class EntityRepo {
 	@Autowired
 	EntityManager entityManager;
 
+	
+	public void test() {
+		User u = entityManager.find(User.class,4l);
+		List<Post> posts = new ArrayList<>();
+		Post p1 = new Post(0, "post53");
+		Post p2  = new Post(0, "post51");
+		p1.setUser(u);
+		p2.setUser(u);
+		posts.add(p1);
+		posts.add(p2);
+		u.getPosts().clear();
+		u.getPosts().addAll(posts);
+		entityManager.persist(u);
+	}
 	public long savePost() {
 		Post entity = new Post();
 		entity.setDetails("New Post");

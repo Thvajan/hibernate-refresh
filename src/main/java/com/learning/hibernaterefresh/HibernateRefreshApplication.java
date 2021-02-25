@@ -2,6 +2,8 @@ package com.learning.hibernaterefresh;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.learning.hibernaterefresh.entity.Post;
 import com.learning.hibernaterefresh.entity.User;
 import com.learning.hibernaterefresh.repository.UserRepository;
 
@@ -35,6 +38,8 @@ public class HibernateRefreshApplication implements CommandLineRunner {
 	@Transactional
 	public void run(String... args) throws Exception {
 //		System.out.println(userRepository.getUserNameById(4l));
+		entityRepo.test();
+		
 //		userRepository.save(new User(0, "New User", Timestamp.valueOf(LocalDateTime.now())));
 //		userRepository.findByNameAsc("New User").forEach(System.out::println);
 //		userRepository.findByName("New User", Sort.by("id").descending()).forEach(System.out::println);
@@ -42,7 +47,7 @@ public class HibernateRefreshApplication implements CommandLineRunner {
 //		userRepository.findByNameGeneric("New User").forEach(System.out::println);
 //		userRepository.findByNameIgnorecase("new user").forEach(System.out::println);
 //		userRepository.findByNameByParam("New User").forEach(System.out::println);
-		userRepository.addPrefixToName("JPA user", "Updated ");
+//		userRepository.addPrefixToName("JPA user", "Updated ");
 //		System.out.println(entityRepo.getPostAndUpdateBySession(4l));
 //		System.out.println(entityRepo.saveUser());
 	}

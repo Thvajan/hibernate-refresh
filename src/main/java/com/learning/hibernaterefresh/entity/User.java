@@ -3,6 +3,7 @@ package com.learning.hibernaterefresh.entity;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class User {
 	private long id;
 	private String name;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true)
 //			,fetch = FetchType.EAGER)
 	private List<Post> posts;
 
